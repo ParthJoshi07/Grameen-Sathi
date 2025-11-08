@@ -344,3 +344,41 @@ input[type="text"], input[type="password"], input[type="tel"], input[type="email
   .auth-card { grid-template-columns: 1fr; padding: 1rem; }
   .auth-illustration { order:2; text-align:center; align-items:center; }
 }
+
+.chat-window {
+  position: fixed; right: 20px; bottom: 80px; width: 380px; height: 520px;
+  z-index: 6000; box-shadow: 0 15px 60px rgba(0,0,0,0.4); background: #fff; border-radius: 12px;
+  display: flex; flex-direction: column; overflow: hidden;
+}
+.chat-header {
+  background: linear-gradient(45deg,#FF9933,#138808); color: #fff; padding: 0.8rem;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.chat-title { font-weight: 800; }
+.chat-close { background: transparent; border: none; color: #fff; font-size: 1.3rem; cursor: pointer; }
+.chat-messages { flex: 1; padding: 0.8rem; overflow: auto; }
+.chat-inputbar { padding: 0.6rem; border-top: 1px solid #eee; display: flex; gap: 0.5rem; }
+.chat-input { flex: 1; padding: 0.6rem; border-radius: 999px; border: 1px solid #FF9933; outline: none; }
+.chat-line { margin-top: 0.4rem; }
+.chat-line.user { text-align: right; }
+.chat-bubble { display: inline-block; padding: 0.5rem 0.6rem; border-radius: 12px; }
+.chat-bubble.user { background: #FF9933; color: #fff; }
+.chat-bubble.ai { background: #138808; color: #fff; }
+
+.modal-backdrop {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.6);
+  display: flex; align-items: center; justify-content: center; z-index: 7000;
+}
+.modal {
+  background: #fff; border-radius: 10px; width: 90%; max-width: 720px; padding: 1rem;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+.modal-header { display: flex; justify-content: space-between; align-items: center; }
+.modal-title { margin: 0; }
+.modal-close { background: #FF9933; color: #fff; border: none; padding: 0.4rem 0.6rem; border-radius: 8px; cursor: pointer; }
+.modal-body { margin-top: 0.6rem; }
+.modal-row { display: flex; justify-content: space-between; padding: 0.35rem 0; border-bottom: 1px solid #eee; }
+.modal-key { }
+.modal-value { color: #138808; font-weight: 700; }
+
+
