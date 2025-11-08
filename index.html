@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Grameen Sathi+ — Smart Rural Dashboard</title>
+  <meta name="description" content="Grameen Sathi+ — Voice-enabled rural assistant for farmers: health, agriculture, water, IoT, schemes and analytics." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="header" role="banner" aria-label="Main header">
+    <div class="header-content">
+      <a class="brand" href="index.html" aria-label="Go to dashboard">
+        <div class="logo-icon" aria-hidden="true">🇮🇳</div>
+        <div class="logo-text">
+          <h1>Grameen Sathi+</h1>
+          <p>आपका डिजिटल ग्रामीण सहायक</p>
+        </div>
+      </a>
+
+      <nav class="main-nav" role="navigation" aria-label="Primary">
+        <ul class="nav-menu" role="menubar">
+          <li role="none"><a role="menuitem" href="index.html" class="active">Dashboard</a></li>
+          <li role="none"><a role="menuitem" href="health.html">Health</a></li>
+          <li role="none"><a role="menuitem" href="agriculture.html">Agriculture</a></li>
+          <li role="none"><a role="menuitem" href="schemes.html">Gov Schemes</a></li>
+          <li role="none"><a role="menuitem" href="iot.html">IoT Monitor</a></li>
+          <li role="none"><a role="menuitem" href="login.html">Login</a></li>
+        </ul>
+      </nav>
+
+      <div class="right-controls" style="align-items:center;">
+        <div class="demo-indicator" aria-hidden="true">
+          <span class="demo-badge">🚀 DEMO MODE - SIH 2025</span>
+          <span class="tech-stack">FastAPI • Flutter • AI/ML</span>
+        </div>
+
+        <button id="voiceSearchBtn" class="icon-btn" title="Voice Assistant" aria-label="Open voice assistant">🎙</button>
+        <button id="openChatBtn" class="icon-btn" title="Open chat" aria-label="Open chat window">💬</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN GRID -->
+  <main class="main-container" role="main" aria-labelledby="pageTitle">
+    <!-- HERO -->
+    <section class="hero-section" id="hero" aria-labelledby="pageTitle" style="grid-column:1 / -1;">
+      <h2 id="pageTitle">🌾 Grameen Sathi+ — Smart Rural Assistant</h2>
+      <p class="hero-subtitle">Voice-enabled AI for farm advisories, health monitoring, water quality tracking, & scheme access — in your language.</p>
+
+      <div class="mission-statement" role="region" aria-label="Mission statement">
+        <h3>"हम यहाँ आपके लिए हैं — We Are Here For You"</h3>
+        <p>Bringing tech to 600+ million rural citizens — voice first, low bandwidth, locally relevant.</p>
+      </div>
+
+      <div class="feature-pills" aria-hidden="true">
+        <span class="pill">🏥 स्वास्थ्य निगरानी</span>
+        <span class="pill">🌾 फसल सलाह</span>
+        <span class="pill">💧 जल गुणवत्ता</span>
+        <span class="pill">🏛 सरकारी योजनाएं</span>
+        <span class="pill">🤖 AI भविष्यवाणी</span>
+        <span class="pill">🗣 आवाज सहायक</span>
+      </div>
+
+      <div style="margin-top:1rem; display:flex; justify-content:center; gap:0.6rem; flex-wrap:wrap;">
+        <button class="primary" onclick="openChat()">Open AI Chat</button>
+        <button class="secondary" onclick="startVoiceSearch()">Start Voice Assistant</button>
+        <a class="secondary" href="schemes.html">Explore Schemes</a>
+      </div>
+    </section>
+
+    <!-- LARGE STATISTICS -->
+    <section class="statistics-section" aria-labelledby="statsTitle" style="grid-column:1 / -1;">
+      <h3 id="statsTitle">📊 Farmer Impact Statistics</h3>
+      <div class="stats-grid">
+        <div class="stat-card" aria-live="polite">
+          <div class="stat-number" id="statFarmers">2.5M+</div>
+          <div class="stat-label">Farmers Assisted</div>
+          <div class="stat-icon">👨‍🌾</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="statDisease">89%</div>
+          <div class="stat-label">Disease Prevention Rate</div>
+          <div class="stat-icon">🛡</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="statYield">45%</div>
+          <div class="stat-label">Average Yield Increase</div>
+          <div class="stat-icon">📈</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="statSchemes">₹12Cr</div>
+          <div class="stat-label">Schemes Accessed (Demo)</div>
+          <div class="stat-icon">💰</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="statSensors">3,420</div>
+          <div class="stat-label">Active IoT Sensors</div>
+          <div class="stat-icon">📡</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="statCamps">128</div>
+          <div class="stat-label">Health Camps Last Year</div>
+          <div class="stat-icon">🏥</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUICK PANELS: Voice / Weather / Water -->
+    <aside class="panel-grid" style="grid-column:1 / -1;">
+      <!-- VOICE ASSISTANT PANEL -->
+      <div class="card voice-assistant" aria-labelledby="voicePanelTitle">
+        <h3 id="voicePanelTitle">🎤 आवाज सहायक — Voice Assistant</h3>
+        <p>Use voice to ask about weather, schemes, or crop tips. Works offline with browser speech APIs (demo).</p>
+
+        <div style="display:flex; gap:0.5rem; margin-top:0.6rem;">
+          <button id="startVoiceBtn" class="primary">Start Voice</button>
+          <button id="stopVoiceBtn" class="secondary">Stop</button>
+          <button class="secondary" onclick="speakText('नमस्ते! मैं आपकी कैसे मदद कर सकता हूँ?')">Demo Speak</button>
+        </div>
+
+        <div style="margin-top:0.6rem;">
+          <label for="voiceLang">Language:</label>
+          <select id="voiceLang" class="language-selector" aria-label="Select voice language">
+            <option>हिंदी (Hindi)</option>
+            <option>English</option>
+            <option>বাংলা (Bengali)</option>
+            <option>தமிழ் (Tamil)</option>
+            <option>ગુજરાતી (Gujarati)</option>
+            <option>ਪੰਜਾਬੀ (Punjabi)</option>
+            <option>मराठी (Marathi)</option>
+          </select>
+        </div>
+
+        <div id="voiceHint" style="margin-top:0.5rem; font-weight:600;">Ready — press Start to speak</div>
+        <div id="voiceResult" class="voice-result" aria-live="polite" style="margin-top:0.6rem;"></div>
+      </div>
+
+      <!-- WEATHER CARD -->
+      <div class="card weather-card" aria-labelledby="weatherTitle">
+        <div class="card-header">
+          <div class="card-icon">🌤</div>
+          <h3 id="weatherTitle">मौसम और जलवायु — Weather</h3>
+        </div>
+
+        <div class="weather-form" style="margin-top:0.4rem;">
+          <input id="weatherLocation" placeholder="Enter city or pin code (e.g. Lucknow / 226001)" aria-label="Weather location" />
+          <button id="fetchWeatherBtn" class="primary">Get Weather</button>
+        </div>
+
+        <div id="weatherOutput" class="weather-output" style="margin-top:0.6rem;">
+          <div class="metric-value" id="w_temp">--</div>
+          <div class="metric-label" id="w_desc"><span class="status-indicator status-good"></span> --</div>
+          <div class="weather-details" id="w_details">
+            <div class="weather-item"><span>🌧 Rain:</span><span id="w_rain">--</span></div>
+            <div class="weather-item"><span>💨 Wind:</span><span id="w_wind">--</span></div>
+          </div>
+        </div>
+
+        <small class="muted">Powered by OpenWeatherMap (put API key in <code>script.js</code>)</small>
+      </div>
+
+      <!-- WATER QUALITY CARD -->
+      <div class="card water-card" aria-labelledby="waterTitle">
+        <div class="card-header">
+          <div class="card-icon">💧</div>
+          <h3 id="waterTitle">जल गुणवत्ता निगरानी — Water Quality</h3>
+        </div>
+
+        <div class="water-metrics">
+          <div class="metric-item">
+            <div class="metric-label">pH स्तर</div>
+            <div class="metric-value" id="waterPH">7.2</div>
+            <div class="progress-bar"><div class="progress-fill progress-good" style="width:85%"></div></div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-label">TDS (ppm)</div>
+            <div class="metric-value" id="waterTDS">320</div>
+            <div class="progress-bar"><div class="progress-fill progress-warning" style="width:65%"></div></div>
+          </div>
+        </div>
+
+        <div class="water-status" style="margin-top:0.6rem;"><span class="status-indicator status-good"></span>Water quality: Acceptable</div>
+
+        <div style="margin-top:0.6rem; display:flex; gap:0.4rem; flex-wrap:wrap;">
+          <button class="primary" onclick="demonstrateBlockchain()">Record on Blockchain (Demo)</button>
+          <button class="secondary" onclick="alert('Show water treatment tips (demo)')">Treatment Tips</button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- DASHBOARD GRID (Health, Crop, Schemes) -->
+    <section class="dashboard-grid" aria-label="Main dashboard cards" style="grid-column:1 / -1;">
+      <!-- Health Card -->
+      <div class="card health-card" role="article" aria-labelledby="healthCardTitle">
+        <div class="card-header">
+          <div class="card-icon health-icon">🏥</div>
+          <h3 id="healthCardTitle">स्वास्थ्य चेतावनी — Health Alerts</h3>
+        </div>
+
+        <div class="health-content">
+          <div class="health-alert good">
+            <div class="alert-title">रोग प्रकोप जोखिम - Low</div>
+            <div class="alert-desc">Water quality stable — hygiene reminders active.</div>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; margin-top:0.6rem;">
+            <div>
+              <div class="stat-value">95%</div>
+              <div class="stat-label">Vaccination Rate</div>
+            </div>
+            <div>
+              <div class="stat-value">12</div>
+              <div class="stat-label">Health Camps This Month</div>
+            </div>
+            <div>
+              <div class="stat-value">2</div>
+              <div class="stat-label">Recent Dengue Cases</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Crop Advisory -->
+      <div class="card crop-card" role="article" aria-labelledby="cropCardTitle">
+        <div class="card-header">
+          <div class="card-icon crop-icon">🌾</div>
+          <h3 id="cropCardTitle">फसल सलाह — Crop Advisory</h3>
+        </div>
+
+        <div class="crop-content">
+          <div class="season-info">Current Season: Rabi</div>
+          <div class="crop-advice good">✅ Wheat sowing recommended in the next 10 days</div>
+          <div class="crop-advice info">💡 Apply split nitrogen fertilizer next week</div>
+
+          <div style="margin-top:0.6rem;">
+            <strong>Quick Tip:</strong> Scout for aphids early — neem oil is an effective organic remedy.
+          </div>
+        </div>
+      </div>
+
+      <!-- Government Schemes -->
+      <div class="card gov-card" role="article" aria-labelledby="govCardTitle">
+        <div class="card-header">
+          <div class="card-icon gov-icon">🏛</div>
+          <h3 id="govCardTitle">सरकारी योजनाएं — Government Schemes</h3>
+        </div>
+
+        <div class="gov-content">
+          <div class="scheme-item active">
+            <div class="scheme-name">PM-KISAN</div>
+            <div class="scheme-status">Next installment: ₹2000 (demo)</div>
+            <div class="scheme-date">Expected: Dec 15, 2025 (demo)</div>
+          </div>
+
+          <div class="scheme-item pending">
+            <div class="scheme-name">Jal Jeevan Mission</div>
+            <div class="scheme-status">Application pending (demo)</div>
+            <div class="scheme-date">Status: Under Review</div>
+          </div>
+
+          <div class="scheme-item new">
+            <div class="scheme-name">Solar Pump Subsidy</div>
+            <div class="scheme-status">80% subsidy available (demo)</div>
+            <div class="scheme-date">Apply Now</div>
+          </div>
+
+          <div style="margin-top:0.6rem; display:flex; gap:0.4rem;">
+            <a class="primary" href="schemes.html">View All Schemes</a>
+            <button class="secondary" onclick="alert('Assist with scheme application (demo)')">Apply (Demo)</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI Predictions & IoT -->
+    <section class="ai-predictions-section" style="grid-column:1 / -1;">
+      <h3>🤖 AI Predictions & Live Analytics</h3>
+
+      <div class="prediction-cards" aria-live="polite">
+        <div class="prediction-card urgent" role="article">
+          <div class="prediction-header">
+            <div class="prediction-icon">⚠</div>
+            <div>
+              <h4>Disease Outbreak Prediction</h4>
+              <div class="confidence">AI Confidence: 94%</div>
+            </div>
+          </div>
+          <div class="prediction-content">
+            <p><strong>Alert:</strong> High risk of bacterial leaf blight in wheat fields in nearby districts.</p>
+            <p><strong>Areas:</strong> Ghaziabad, Meerut, Muzaffarnagar (demo)</p>
+            <p><strong>Timeline:</strong> Next 7-10 days</p>
+            <p><strong>Action:</strong> Apply copper-based fungicide immediately (demo recommendation).</p>
+          </div>
+          <div class="prediction-impact">
+            <span class="impact-stat">🛡 2,847 farms protected</span>
+            <span class="impact-stat">💰 ₹45L crop loss prevented</span>
+          </div>
+        </div>
+
+        <div class="prediction-card success" role="article">
+          <div class="prediction-header">
+            <div class="prediction-icon">📈</div>
+            <div>
+              <h4>Yield Optimization</h4>
+              <div class="confidence">AI Confidence: 91%</div>
+            </div>
+          </div>
+          <div class="prediction-content">
+            <p><strong>Prediction:</strong> 28% yield increase possible with precision irrigation & nutrient timing.</p>
+            <p><strong>Investment:</strong> ₹8,500 per acre (demo)</p>
+            <p><strong>Expected ROI:</strong> 340% within the season (demo)</p>
+          </div>
+          <div class="prediction-impact">
+            <span class="impact-stat">🌾 156 farms optimized</span>
+            <span class="impact-stat">📊 Avg 31% yield boost</span>
+          </div>
+        </div>
+
+        <!-- small interactive card -->
+        <div class="prediction-card" role="article">
+          <div class="prediction-header">
+            <div class="prediction-icon">🔬</div>
+            <div>
+              <h4>Soil Health AI</h4>
+              <div class="confidence">AI Confidence: 88%</div>
+            </div>
+          </div>
+          <div class="prediction-content">
+            <p><strong>Suggestion:</strong> Add micronutrients (Zn, B) for areas with deficient soil tests (demo).</p>
+            <p><strong>Action:</strong> Order a free soil test kit — <button class="primary" onclick="alert('Request soil test kit (demo)')">Request Kit</button></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Market / Mandi Prices + Farmer Tools -->
+    <section style="grid-column:1 / -1; display:grid; grid-template-columns: 2fr 420px; gap:1rem;">
+      <div class="card">
+        <h3>Marketplace — Nearby Mandis (Demo prices)</h3>
+        <div style="display:flex; gap:0.6rem; flex-wrap:wrap; align-items:center;">
+          <div style="flex:1;">
+            <table style="width:100%; border-collapse:collapse;">
+              <thead><tr style="text-align:left; border-bottom:1px solid #eee;"><th>Commodity</th><th style="text-align:right">Price</th><th style="text-align:right">Change</th></tr></thead>
+              <tbody>
+                <tr><td>Wheat</td><td style="text-align:right">₹2,050 / qtl</td><td style="text-align:right;color:#4CAF50">+1.2%</td></tr>
+                <tr><td>Rice (Paddy)</td><td style="text-align:right">₹1,900 / qtl</td><td style="text-align:right;color:#F44336">-0.6%</td></tr>
+                <tr><td>Cotton</td><td style="text-align:right">₹6,200 / qtl</td><td style="text-align:right;color:#4CAF50">+0.8%</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div style="width:280px;">
+            <h4>Farmer Tools</h4>
+            <button class="primary" onclick="downloadCSV()">Download Advisory CSV</button>
+            <button class="secondary" style="margin-top:0.4rem;" onclick="alert('Open input subsidy calculator (demo)')">Subsidy Calculator</button>
+          </div>
+        </div>
+      </div>
+
+      <aside class="card" aria-labelledby="farmerToolsTitle">
+        <h3 id="farmerToolsTitle">Farmer Quick Actions</h3>
+        <div style="display:grid; gap:0.5rem; margin-top:0.6rem;">
+          <button class="primary" onclick="openChat()">Ask AI Assistant</button>
+          <button class="secondary" onclick="startVoiceSearch()">Voice Query</button>
+          <button class="secondary" onclick="alert('Register for camp (demo)')">Register for Health Camp</button>
+          <button class="secondary" onclick="alert('Apply for solar pump subsidy (demo)')">Apply Solar Subsidy</button>
+        </div>
+
+        <div style="margin-top:0.8rem;">
+          <h4>Localization</h4>
+          <p>Content available in multiple Indian languages (demo). Use the voice assistant language selector for voice input.</p>
+        </div>
+      </aside>
+    </section>
+
+    <!-- Success Stories Carousel -->
+    <section class="success-stories-section" style="grid-column:1 / -1;">
+      <h3>Success Stories</h3>
+      <div class="stories-container" id="storiesContainer" aria-live="polite">
+        <div class="story-card active-story" id="story-1">
+          <div class="story-header">
+            <img class="story-avatar" src="farmer-leaning-on-a-shovel-on-a-vineyard.webp" alt="" />
+            <div class="story-info">
+              <h4>Ram Kisan</h4>
+              <p>Wheat farmer, Meerut</p>
+            </div>
+            <div class="story-impact">+40% yield</div>
+          </div>
+          <div class="story-content">
+            <p>Ram used precision irrigation recommendations and AI crop advice. His yield increased by 40% (demo).</p>
+            <p><em>"The voice assistant helped me plan the field operations."</em></p>
+          </div>
+          <div class="story-metrics">
+            <span>2,000 kg saved</span>
+            <span>₹45,000 benefit</span>
+          </div>
+        </div>
+
+        <div class="story-card" id="story-2">
+          <div class="story-header">
+            <img class="story-avatar" src="farmer-leaning-on-a-shovel-on-a-vineyard.webp" alt="" />
+            <div class="story-info">
+              <h4>Sita Devi</h4>
+              <p>Dairy farmer, Lucknow</p>
+            </div>
+            <div class="story-impact">+18% milk</div>
+          </div>
+          <div class="story-content">
+            <p>Sita improved water quality and animal feed after analytics suggested adjustments — milk yield rose 18% (demo).</p>
+          </div>
+          <div class="story-metrics">
+            <span>3 liters/day</span>
+            <span>₹8,200/month</span>
+          </div>
+        </div>
+
+        <div class="story-card" id="story-3">
+          <div class="story-header">
+            <img class="story-avatar" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Crect width='60' height='60' fill='%23e3f2fd'/%3E%3C/svg%3E" alt="" />
+            <div class="story-info">
+              <h4>Community Water Board</h4>
+              <p>Sector 7</p>
+            </div>
+            <div class="story-impact">Safe Water</div>
+          </div>
+          <div class="story-content">
+            <p>Installed low-cost sensors

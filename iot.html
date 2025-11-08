@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Grameen Sathi+ — IoT Monitor (Expanded)</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="header-content">
+      <a class="brand" href="index.html"><div class="logo-icon">🇮🇳</div><div class="logo-text"><h1>Grameen Sathi+</h1><p>आपका डिजिटल ग्रामीण सहायक</p></div></a>
+      <nav class="main-nav">
+        <ul class="nav-menu">
+          <li><a href="index.html">Dashboard</a></li>
+          <li><a href="health.html">Health</a></li>
+          <li><a href="agriculture.html">Agriculture</a></li>
+          <li><a href="schemes.html">Gov Schemes</a></li>
+          <li><a href="iot.html" class="active">IoT Monitor</a></li>
+          <li><a href="login.html">Login</a></li>
+        </ul>
+      </nav>
+      <div class="right-controls"><div class="demo-indicator"><span class="demo-badge">📡 IoT DEMO</span></div></div>
+    </div>
+  </header>
+
+  <main class="main-container" style="padding-bottom:3rem;">
+    <section class="hero-section" style="grid-column:1 / -1;">
+      <h2>IoT Sensor Network — Live Monitor</h2>
+      <p class="hero-subtitle">Water sensors • Soil sensors • Weather stations • Connectivity & uptime</p>
+    </section>
+
+    <section style="grid-column:1 / -1; display:grid; grid-template-columns: 1fr 380px; gap:1rem;">
+      <div>
+        <div class="card">
+          <h3>Network Overview</h3>
+          <div style="display:flex; gap:0.6rem; flex-wrap:wrap; margin-top:0.6rem;">
+            <div style="background:#f8f8f8; padding:0.6rem; border-radius:8px; min-width:160px;">
+              <strong>Water Sensors</strong><div id="waterCount">12 / 15 online</div>
+            </div>
+            <div style="background:#f8f8f8; padding:0.6rem; border-radius:8px; min-width:160px;">
+              <strong>Weather Stations</strong><div id="weatherCount">4 / 6 online</div>
+            </div>
+            <div style="background:#f8f8f8; padding:0.6rem; border-radius:8px; min-width:160px;">
+              <strong>Soil Monitors</strong><div id="soilCount">8 / 8 online</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:0.8rem;">
+          <h3>Sensor Inventory</h3>
+          <table style="width:100%; border-collapse:collapse; margin-top:0.6rem;">
+            <thead><tr style="text-align:left; border-bottom:1px solid #eee;"><th>Sensor ID</th><th>Type</th><th>Status</th><th>Last Read</th></tr></thead>
+            <tbody id="sensorsTableBody">
+              <tr><td>WQ-001</td><td>Water Quality</td><td style="color:#4CAF50">Online</td><td>5 min ago</td></tr>
+              <tr><td>WS-003</td><td>Weather Station</td><td style="color:#FF9800">Intermittent</td><td>12 min ago</td></tr>
+              <tr><td>SM-007</td><td>Soil Moisture</td><td style="color:#4CAF50">Online</td><td>2 min ago</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card" style="margin-top:0.8rem;">
+          <h3>Historical Readings (Sample)</h3>
+          <!-- simple inline SVG sparkline for demo -->
+          <svg width="100%" height="90" viewBox="0 0 200 90" style="background:#fff; border-radius:8px;">
+            <!-- mocked polyline -->
+            <polyline fill="none" stroke="#138808" stroke-width="3" points="0,60 20,50 40,55 60,40 80,45 100,30 120,35 140,25 160,40 180,30 200,20" />
+            Sorry, your browser does not support inline SVG.
+          </svg>
+          <div style="margin-top:0.6rem;">Water pH trend (demo)</div>
+        </div>
+
+        <div class="card" style="margin-top:0.8rem;">
+          <h3>Alerts & Actions</h3>
+          <div style="margin-top:0.6rem;">
+            <div style="padding:0.6rem; background:#FFF3E0; border-radius:8px; border-left:4px solid #FF9800;">
+              <strong>High TDS detected</strong><div>Sensor WQ-005 reported 780 ppm — advise filtration/boil notice.</div>
+            </div>
+            <div style="padding:0.6rem; background:#FFEBEE; border-radius:8px; border-left:4px solid #F44336; margin-top:0.6rem;">
+              <strong>Weather Warning</strong><div>Heavy rainfall predicted in 48 hours — delay harvest operations.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <aside style="width:380px;">
+        <div class="card">
+          <h3>Add / Manage Sensor (Demo)</h3>
+          <form id="addSensorForm" style="display:grid; gap:0.5rem;">
+            <input name="sid" placeholder="Sensor ID (e.g. WQ-010)" style="padding:0.5rem; border-radius:8px;">
+            <select name="type" style="padding:0.5rem; border-radius:8px;">
+              <option>Water Quality</option>
+              <option>Weather Station</option>
+              <option>Soil Moisture</option>
+            </select>
+            <button type="submit" class="primary">Add Sensor (Demo)</button>
+          </form>
+          <div id="addSensorStatus" style="margin-top:0.6rem;"></div>
+        </div>
+
+        <div class="card" style="margin-top:0.8rem;">
+          <h3>Export Sensor Data</h3>
+          <p>Download last 24h mock CSV (demo)</p>
+          <button class="primary" onclick="downloadSensorCSV()">Download CSV</button>
+        </div>
+
+        <div class="card" style="margin-top:0.8rem;">
+          <h3>Connectivity Health</h3>
+          <div style="margin-top:0.6rem;">
+            <div><strong>Network Uptime (30d)</strong><div>99.2%</div></div>
+            <div style="margin-top:0.4rem;"><strong>Average Latency</strong><div>120 ms</div></div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="card" style="grid-column:1 / -1; margin-top:0.8rem;">
+      <h3>Sensor Data Visualisation (Demo)</h3>
+      <div style="display:flex; gap:0.6rem; flex-wrap:wrap;">
+        <div style="flex:1; min-width:200px;">
+          <h4>pH (last 12 readings)</h4>
+          <div style="background:#fff; padding:0.6rem; border-radius:8px;">
+            <pre style="font-family:monospace; font-size:0.85rem; margin:0;">8.1, 7.9, 7.6, 7.4, 7.2, 7.3, 7.2, 7.1, 7.0, 7.2, 7.2, 7.1</pre>
+          </div>
+        </div>
+
+        <div style="flex:1; min-width:200px;">
+          <h4>TDS (ppm) — last 12 readings</h4>
+          <div style="background:#fff; padding:0.6rem; border-radius:8px;">
+            <pre style="font-family:monospace; font-size:0.85rem; margin:0;">300, 320, 340, 360, 380, 400, 420, 410, 390, 370, 350, 330</pre>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+
+  <script>
+    // IoT page small scripts
+    document.getElementById('addSensorForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const fd = new FormData(this);
+      const sid = fd.get('sid') || ('SN-' + Math.floor(Math.random()*9000+1000));
+      const type = fd.get('type');
+      const tbody = document.getElementById('sensorsTableBody');
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td>${sid}</td><td>${type}</td><td style="color:#4CAF50">Online</td><td>Just now</td>`;
+      tbody.insertBefore(tr, tbody.firstChild);
+      document.getElementById('addSensorStatus').textContent = 'Sensor added (demo): ' + sid;
+      this.reset();
+      // update counts
+      document.getElementById('waterCount').textContent = '13 / 15 online';
+    });
+
+    function downloadSensorCSV(){
+      // demo CSV
+      const csvRows = [
+        ['sensor_id','type','timestamp','pH','tds'],
+        ['WQ-001','water','2025-11-07T08:00:00Z','7.2','320'],
+        ['WQ-002','water','2025-11-07T09:00:00Z','7.1','330']
+      ];
+      const csv = csvRows.map(r => r.join(',')).join('\n');
+      const a = document.createElement('a');
+      a.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
+      a.download = 'sensor_mock_24h.csv';
+      a.click();
+    }
+  </script>
+</body>
+</html>

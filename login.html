@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sign in — Grameen Sathi+</title>
+  <meta name="description" content="Sign in to Grameen Sathi+ dashboard" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- header -->
+  <header class="header" role="banner">
+    <div class="header-content">
+      <a class="brand" href="index.html">
+        <div class="logo-icon">🇮🇳</div>
+        <div class="logo-text"><h1>Grameen Sathi+</h1><p>आपका डिजिटल ग्रामीण सहायक</p></div>
+      </a>
+      <nav class="main-nav" aria-label="Primary">
+        <ul class="nav-menu">
+          <li><a href="index.html">Dashboard</a></li>
+          <li><a href="health.html">Health</a></li>
+          <li><a href="agriculture.html">Agriculture</a></li>
+          <li><a href="schemes.html">Gov Schemes</a></li>
+          <li><a href="iot.html">IoT Monitor</a></li>
+          <li><a href="login.html" class="active">Login</a></li>
+        </ul>
+      </nav>
+      <div class="right-controls">
+        <div class="demo-indicator"><span class="demo-badge">🚀 DEMO MODE</span></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="auth-wrapper" role="main">
+    <div class="auth-card" role="region" aria-label="Login panel">
+      <!-- left: illustration / info -->
+      <div class="auth-illustration" aria-hidden="false">
+        <h2>Welcome back to Grameen Sathi+</h2>
+        <p>Sign in to access your dashboard, AI assistant, IoT sensors, and scheme applications. Login is a demo — use the sample credentials listed below.</p>
+
+        <div class="demo-credentials">
+          <strong>Demo credentials (use these)</strong>
+          <ul>
+            <li><strong>Farmer:</strong> <code>farmer@example.com</code> / <code>farm1234</code></li>
+            <li><strong>Admin:</strong> <code>admin@example.com</code> / <code>admin1234</code></li>
+          </ul>
+          <div class="muted-block">For production: replace with your backend authentication (FastAPI / OAuth2 / JWT).</div>
+        </div>
+
+        <div class="section-spacer">
+          <strong>New here?</strong>
+          <p class="mt-3">If you need an account, ask your local admin or use the registration flow (demo system does not create real accounts).</p>
+        </div>
+      </div>
+
+      <!-- right: form -->
+      <div class="auth-form" aria-labelledby="loginTitle">
+        <h3 id="loginTitle">Sign in to your account</h3>
+
+        <form id="loginForm" novalidate>
+          <div class="form-row">
+            <label for="loginEmail">Email or Phone</label>
+            <input id="loginEmail" name="loginEmail" type="text" inputmode="email" autocomplete="username" placeholder="farmer@example.com or 9123456789" required aria-required="true" />
+          </div>
+
+          <div class="form-row">
+            <label for="loginPassword">Password</label>
+            <div class="inline-input">
+              <input id="loginPassword" name="loginPassword" type="password" autocomplete="current-password" placeholder="Enter your password" required aria-required="true" />
+              <button type="button" class="pw-toggle" id="pwToggle" aria-label="Show or hide password">Show</button>
+            </div>
+          </div>
+
+          <div class="row-between">
+            <label class="remember"><input type="checkbox" id="rememberMe" /> Remember me</label>
+            <a href="#" id="forgotLink" class="muted">Forgot password?</a>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="primary" id="loginBtn">Sign in</button>
+            <button type="button" class="secondary" id="demoQuick" title="Fill demo">Fill demo</button>
+          </div>
+
+          <div id="loginMessage" aria-live="polite"></div>
+
+          <div class="divider" role="separator" aria-hidden="true"></div>
+
+          <div class="row-between">
+            <div class="muted-block">Or sign in with</div>
+            <div class="social-row justify-end">
+              <button type="button" class="social-btn" id="socialGoogle">Google</button>
+              <button type="button" class="social-btn" id="socialPhone">OTP</button>
+            </div>
+          </div>
+
+          <div class="muted-block mt-3">
+            By continuing you accept our <a href="privacy.html">Privacy</a> and <a href="terms.html">Terms</a>.
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer" aria-hidden="false">
+    <small class="muted">Demo login — replace with real auth for production. &nbsp; © Grameen Sathi+</small>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

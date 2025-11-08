@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Grameen Sathi+ — Government Schemes (Expanded)</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="header-content">
+      <a class="brand" href="index.html"><div class="logo-icon">🇮🇳</div><div class="logo-text"><h1>Grameen Sathi+</h1><p>आपका डिजिटल ग्रामीण सहायक</p></div></a>
+      <nav class="main-nav">
+        <ul class="nav-menu">
+          <li><a href="index.html">Dashboard</a></li>
+          <li><a href="health.html">Health</a></li>
+          <li><a href="agriculture.html">Agriculture</a></li>
+          <li><a href="schemes.html" class="active">Gov Schemes</a></li>
+          <li><a href="iot.html">IoT Monitor</a></li>
+        </ul>
+      </nav>
+      <div class="right-controls"><div class="demo-indicator"><span class="demo-badge">🏛 SCHEMES</span></div></div>
+    </div>
+  </header>
+
+  <main class="main-container" style="padding-bottom:3rem;">
+    <section class="hero-section" style="grid-column:1 / -1;">
+      <h2>सरकारी योजनाएं — Schemes & Benefits</h2>
+      <p class="hero-subtitle">Find, assess eligibility, and track applications for schemes relevant to farmers</p>
+    </section>
+
+    <section style="grid-column:1 / -1; display:grid; grid-template-columns: 2fr 420px; gap:1rem;">
+      <div>
+        <div class="card">
+          <h3>Featured Schemes</h3>
+          <div style="margin-top:0.6rem;">
+            <div style="padding:0.6rem; border-radius:8px; background:#f8f8f8; margin-bottom:0.6rem;">
+              <strong>PM-KISAN</strong>
+              <div>Direct income support to farmers. Next installment: ₹2000 (demo).</div>
+              <button class="primary" style="margin-top:0.4rem;" onclick="alert('Checking PM-KISAN status (demo)')">Check status</button>
+            </div>
+
+            <div style="padding:0.6rem; border-radius:8px; background:#f8f8f8; margin-bottom:0.6rem;">
+              <strong>Jal Jeevan Mission</strong>
+              <div>Tap-water connection to households (track local progress).</div>
+              <button class="secondary" style="margin-top:0.4rem;" onclick="alert('Open Jal Jeevan application (demo)')">Apply / Track</button>
+            </div>
+
+            <div style="padding:0.6rem; border-radius:8px; background:#f8f8f8;">
+              <strong>Solar Pump Subsidy</strong>
+              <div>Subsidy up to 80% for solar pumps (demo).</div>
+              <button class="primary" style="margin-top:0.4rem;" onclick="alert('Open Solar Pump subsidy form (demo)')">Apply</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:0.8rem;">
+          <h3>Eligibility Checker (Demo)</h3>
+          <p>Enter simple details to check approximate eligibility. This is a demo and does not represent actual government validation.</p>
+          <form id="eligForm" style="display:grid; gap:0.6rem;">
+            <input name="name" placeholder="Farmer Name" style="padding:0.5rem; border-radius:8px;" />
+            <input name="aadhaar" placeholder="Aadhaar (last 4 digits)" maxlength="4" style="padding:0.5rem; border-radius:8px;" />
+            <select name="landholding" style="padding:0.5rem; border-radius:8px;">
+              <option value="m">Marginal (&lt;1 ha)</option>
+              <option value="s">Small (1-2 ha)</option>
+              <option value="l">Large (&gt;2 ha)</option>
+            </select>
+            <div style="display:flex; gap:0.6rem;">
+              <button class="primary" type="button" onclick="checkEligibility()">Check</button>
+              <button class="secondary" type="reset">Reset</button>
+            </div>
+          </form>
+          <div id="eligResult" style="margin-top:0.6rem;"></div>
+        </div>
+
+        <div class="card" style="margin-top:0.8rem;">
+          <h3>Application Tracker (Demo)</h3>
+          <p>Paste your application reference (demo values) to see mock status.</p>
+          <input id="appRef" placeholder="Enter reference (e.g. PMK-12345)" style="padding:0.5rem; border-radius:8px; width:60%;" />
+          <button class="primary" style="margin-left:0.5rem;" onclick="trackApplication()">Track</button>
+          <div id="appStatus" style="margin-top:0.6rem;"></div>
+        </div>
+
+        <div class="card" style="margin-top:0.8rem;">
+          <h3>Scheme Documents & Help</h3>
+          <p>Common documents (demo):</p>
+          <ul>
+            <li>ID proof (Aadhaar)</li>
+            <li>Land record / Khasra / Jamabandi</li>
+            <li>Bank account (for direct benefit transfer)</li>
+          </ul>
+          <p>Need help scanning or uploading documents? Local facilitator assistance is available (demo).</p>
+        </div>
+      </div>
+
+      <aside style="width:420px;">
+        <div class="card">
+          <h3>Scheme Highlights</h3>
+          <div style="margin-top:0.6rem;">
+            <div><strong>PM-KISAN</strong> — Income support to small & marginal farmers (demo)</div>
+            <div style="margin-top:0.5rem;"><strong>Jal Jeevan</strong> — Clean water at household level</div>
+            <div style="margin-top:0.5rem;"><strong>Soil Health Card</strong> — Free soil testing & recommendations</div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:0.8rem;">
+          <h3>Common Questions</h3>
+          <details><summary>How long does processing take?</summary><p>In real schemes, timeline varies; demo shows immediate updates.</p></details>
+          <details><summary>Who can apply?</summary><p>Eligibility varies by scheme — the eligibility checker provides a rough demo answer.</p></details>
+        </div>
+
+        <div class="card" style="margin-top:0.8rem;">
+          <h3>Local Office Contacts</h3>
+          <div>District Agriculture Office: 01234-XXXXX</div>
+          <div>Block Development Officer: 01234-YYYYY</div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="card" style="grid-column:1 / -1; margin-top:0.8rem;">
+      <h3>How to Apply — Quick Steps (Demo)</h3>
+      <ol>
+        <li>Collect necessary documents</li>
+        <li>Fill application (paper or online)</li>
+        <li>Submit to local office or online portal</li>
+        <li>Track using application reference</li>
+      </ol>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+
+  <script>
+    function checkEligibility(){
+      const form = document.getElementById('eligForm');
+      const fd = new FormData(form);
+      const land = fd.get('landholding');
+      const result = document.getElementById('eligResult');
+      if (land === 'm' || land === 's') {
+        result.innerHTML = '<strong style="color:#138808">Likely eligible for small-farmer schemes (demo)</strong>';
+      } else {
+        result.innerHTML = '<strong style="color:#f57c00">Some schemes may not support large landholdings (demo)</strong>';
+      }
+    }
+
+    function trackApplication(){
+      const ref = document.getElementById('appRef').value.trim();
+      const out = document.getElementById('appStatus');
+      if (!ref) { out.textContent = 'Enter a reference.'; return; }
+      out.textContent = 'Checking status for ' + ref + '...';
+      setTimeout(()=> {
+        const statuses = ['Under Review', 'Approved', 'Rejected - missing doc', 'Payment Scheduled'];
+        const pick = statuses[Math.floor(Math.random()*statuses.length)];
+        out.innerHTML = `<strong>Status (demo):</strong> ${pick}`;
+      }, 800);
+    }
+  </script>
+</body>
+</html>

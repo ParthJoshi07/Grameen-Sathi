@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Grameen Sathi+ — Agriculture (Expanded)</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-content">
+      <a class="brand" href="index.html"><div class="logo-icon">🇮🇳</div><div class="logo-text"><h1>Grameen Sathi+</h1><p>आपका डिजिटल ग्रामीण सहायक</p></div></a>
+      <nav class="main-nav">
+        <ul class="nav-menu">
+          <li><a href="index.html">Dashboard</a></li>
+          <li><a href="health.html">Health</a></li>
+          <li><a href="agriculture.html" class="active">Agriculture</a></li>
+          <li><a href="schemes.html">Gov Schemes</a></li>
+          <li><a href="iot.html">IoT Monitor</a></li>
+            <li><a href="login.html">Login</a></li>
+        </ul>
+      </nav>
+      <div class="right-controls"><div class="demo-indicator"><span class="demo-badge">🚜 AGRI DEMO</span></div></div>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="main-container" style="padding-bottom:3rem;">
+    <section class="hero-section" style="grid-column:1 / -1;">
+      <h2>🌾 Agriculture Hub — Advisory & Market</h2>
+      <p class="hero-subtitle">Precision advice • Crop calendar • Input calculator • Pest & disease alerts • Market prices</p>
+    </section>
+
+    <!-- crop calendar + advisory -->
+    <section style="grid-column:1 / -1; display:grid; grid-template-columns: 1fr 360px; gap:1rem;">
+      <div>
+        <div class="card">
+          <h3>Crop Calendar (Regional)</h3>
+          <p>Rabi season tasks and recommended operations (demo):</p>
+          <ul>
+            <li>Nov-Dec: Land preparation and wheat sowing</li>
+            <li>Dec-Jan: Apply basal fertilizer (phosphorus)</li>
+            <li>Jan-Feb: Nitrogen split application</li>
+            <li>Feb-Mar: Pest scouting weekly</li>
+          </ul>
+        </div>
+
+        <div class="card" style="margin-top:0.8rem;">
+          <h3>Precision Irrigation Planner</h3>
+          <p>Estimate irrigation volume by crop area — demo calculator below.</p>
+          <div style="display:flex; gap:0.6rem; margin-top:0.6rem; flex-wrap:wrap;">
+            <input id="areaInput" placeholder="Area in acres (e.g. 2.5)" style="padding:0.5rem; border-radius:8px;">
+            <select id="cropSelect" style="padding:0.5rem; border-radius:8px;">
+              <option value="wheat">Wheat</option>
+              <option value="rice">Rice</option>
+              <option value="cotton">Cotton</option>
+            </select>
+            <button class="primary" onclick="calculateIrrigation()">Calculate</button>
+          </div>
+          <div id="irrigationResult" style="margin-top:0.6rem;"></div>
+        </div>
+
+        <div class="card" style="margin-top:0.8rem;">
+          <h3>Pest & Disease Alerts</h3>
+          <p>Latest AI predictions (demo):</p>
+          <ul>
+            <li><strong>Wheat:</strong> Bacterial leaf blight risk (next 7 days). Action: copper-based fungicide.</li>
+            <li><strong>Cotton:</strong> Aphid sighting. Action: neem oil spray.</li>
+          </ul>
+        </div>
+
+        <div class="card" style="margin-top:0.8rem;">
+          <h3>Soil Health & Recommendations</h3>
+          <p>Demo suggestions based on soil pH and last test:</p>
+          <ul>
+            <li>pH 6.2 — Good for wheat; apply gypsum if sodium high.</li>
+            <li>Use balanced NPK— follow micronutrient check every season.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- right column: market prices & inputs -->
+      <aside style="width:360px;">
+        <div class="card">
+          <h3>Market Prices (Nearby Mandis)</h3>
+          <table style="width:100%; border-collapse:collapse;">
+            <tbody>
+              <tr><td>Wheat</td><td style="text-align:right;">₹2,050 / quintal</td></tr>
+              <tr><td>Rice (Paddy)</td><td style="text-align:right;">₹1,900 / quintal</td></tr>
+              <tr><td>Cotton</td><td style="text-align:right;">₹6,200 / quintal</td></tr>
+            </tbody>
+          </table>
+          <small class="muted">Prices are mock/demo values for illustration.</small>
+        </div>
+
+        <div class="card" style="margin-top:0.8rem;">
+          <h3>Seed Varieties</h3>
+          <p>Recommended high-yield varieties for region (demo):</p>
+          <ul>
+            <li>Wheat: WH-1105 — drought tolerant</li>
+            <li>Rice: IR-64 variant — flood tolerant</li>
+            <li>Cotton: Bt hybrid X — pest resistant</li>
+          </ul>
+        </div>
+
+        <div class="card" style="margin-top:0.8rem;">
+          <h3>Input Calculator (Fertilizer)</h3>
+          <p>Quick fertilizer quantity estimate (demo)</p>
+          <input id="fertArea" placeholder="Area (acres)" style="padding:0.5rem; border-radius:8px; width:100%;"/>
+          <select id="fertCrop" style="padding:0.5rem; border-radius:8px; width:100%; margin-top:0.5rem;">
+            <option value="wheat">Wheat</option>
+            <option value="rice">Rice</option>
+            <option value="cotton">Cotton</option>
+          </select>
+          <button class="primary" style="width:100%; margin-top:0.5rem;" onclick="calculateFertilizer()">Estimate Fertilizer</button>
+          <div id="fertResult" style="margin-top:0.6rem;"></div>
+        </div>
+
+        <div class="card" style="margin-top:0.8rem;">
+          <h3>Training & Events</h3>
+          <ul>
+            <li>21 Dec — Soil Health Workshop</li>
+            <li>28 Dec — Market Linkage Session</li>
+          </ul>
+        </div>
+      </aside>
+    </section>
+
+    <!-- extended content -->
+    <section class="card" style="grid-column:1 / -1; margin-top:0.8rem;">
+      <h3>Success Case Studies</h3>
+      <div style="display:grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap:0.6rem; margin-top:0.6rem;">
+        <div style="background:#f8f8f8; padding:0.6rem; border-radius:8px;">
+          <strong>Ram Kisan</strong><div>+40% yield by precision irrigation</div>
+        </div>
+        <div style="background:#f8f8f8; padding:0.6rem; border-radius:8px;">
+          <strong>Sita Mali</strong><div>Clean water for livestock improved milk yield</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" style="grid-column:1 / -1; margin-top:0.8rem;">
+      <h3>Farmer Tools — Export & Print</h3>
+      <p>Download a CSV of sample crop advisory for your records (demo).</p>
+      <button class="primary" onclick="downloadAdvisoryCSV()">Download Advisory CSV</button>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+
+  <script>
+    function calculateIrrigation(){
+      const area = parseFloat(document.getElementById('areaInput').value) || 0;
+      const crop = document.getElementById('cropSelect').value;
+      // rough per-acre water need (demo values)
+      const perAcre = { wheat: 3000, rice: 8000, cotton: 4000 }; // cubic meters per season (demo)
+      const result = area * (perAcre[crop] || 3000);
+      document.getElementById('irrigationResult').textContent = `Estimated seasonal water need: ${result.toLocaleString()} liters (demo values)`;
+    }
+
+    function calculateFertilizer(){
+      const area = parseFloat(document.getElementById('fertArea').value) || 0;
+      const crop = document.getElementById('fertCrop').value;
+      // demo NPK recommendation per acre (kg)
+      const perAcre = { wheat: {N:80, P:40, K:40}, rice:{N:120,P:60,K:60}, cotton:{N:100,P:50,K:50} };
+      const rec = perAcre[crop] || perAcre['wheat'];
+      const total = { N: Math.round(rec.N * area), P: Math.round(rec.P * area), K: Math.round(rec.K * area) };
+      document.getElementById('fertResult').innerHTML = `Estimated fertilizer total: N ${total.N} kg, P ${total.P} kg, K ${total.K} kg (demo)`;
+    }
+
+    function downloadAdvisoryCSV(){
+      const rows = [
+        ['Crop','Advisory','Timeline'],
+        ['Wheat','Sow in Nov-Dec; split N in Jan','Nov-Jan'],
+        ['Rice','Delay harvest if heavy rain','Sep-Oct']
+      ];
+      const csv = rows.map(r => r.map(c => `"${c}"`).join(',')).join('\n');
+      const a = document.createElement('a');
+      a.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
+      a.download = 'advisory_demo.csv';
+      a.click();
+    }
+  </script>
+</body>
+</html>
