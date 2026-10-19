@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Grameen Sathi+ — Government Schemes</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-content">
+      <a class="brand" href="index.html">
+        <div class="logo-icon">GS</div>
+        <div class="logo-text">
+          <h1>Grameen Sathi+</h1>
+          <p>Rural Decision &amp; Advisory Platform</p>
+        </div>
+      </a>
+      <nav class="main-nav">
+        <ul class="nav-menu">
+          <li><a href="index.html">Dashboard</a></li>
+          <li><a href="health.html">Health</a></li>
+          <li><a href="agriculture.html">Agriculture</a></li>
+          <li><a href="schemes.html" class="active">Gov Schemes</a></li>
+          <li><a href="iot.html">IoT Monitor</a></li>
+          <li><a href="login.html">Login</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="main-container">
+    <section class="hero-section" style="grid-column:1 / -1;">
+      <h2>Government Agricultural &amp; Rural Schemes</h2>
+      <p class="hero-subtitle">Discover active subsidies, verify general criteria, and monitor existing scheme applications.</p>
+    </section>
+
+    <section class="two-col-layout" style="grid-column:1 / -1;">
+      <div>
+        <div class="card">
+          <div class="card-header">
+            <h3>Featured Agricultural Programs</h3>
+            <span class="card-badge">Direct Benefits</span>
+          </div>
+
+          <div class="scheme-item">
+            <div class="scheme-name">PM-KISAN (Pradhan Mantri Kisan Samman Nidhi)</div>
+            <div class="scheme-status">Direct income transfer of ₹6,000 annually in three equal installments.</div>
+            <div style="margin-top:0.5rem;">
+              <button class="primary" onclick="alert('Querying Central DBT registry: Next installment of ₹2,000 scheduled for disbursement.')">Verify Status</button>
+            </div>
+          </div>
+
+          <div class="scheme-item">
+            <div class="scheme-name">Jal Jeevan Mission</div>
+            <div class="scheme-status">Universal piped potable water connection per household.</div>
+            <div style="margin-top:0.5rem;">
+              <button class="secondary" onclick="alert('Panchayat Jal Jeevan records: Phase 2 piping installation is 84% completed.')">Track Village Progress</button>
+            </div>
+          </div>
+
+          <div class="scheme-item">
+            <div class="scheme-name">PM-KUSUM (Solar Pump Assistance)</div>
+            <div class="scheme-status">Up to 80% subsidy for decentralized solar agricultural pumps.</div>
+            <div style="margin-top:0.5rem;">
+              <button class="primary" onclick="alert('Submitting PM-KUSUM beneficiary application packet to District Renewable Energy Office.')">Apply for Subsidy</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:1.25rem;">
+          <div class="card-header">
+            <h3>Eligibility Evaluator</h3>
+            <span class="card-badge">Criteria Check</span>
+          </div>
+          <form id="eligForm" style="display:grid; gap:0.75rem;">
+            <div>
+              <label style="display:block; font-size:0.85rem; font-weight:600; margin-bottom:0.25rem;">Applicant Name</label>
+              <input name="name" placeholder="Full name as per Aadhaar" />
+            </div>
+            <div>
+              <label style="display:block; font-size:0.85rem; font-weight:600; margin-bottom:0.25rem;">Landholding Category</label>
+              <select name="landholding">
+                <option value="m">Marginal (&lt; 1 hectare)</option>
+                <option value="s">Small (1–2 hectares)</option>
+                <option value="l">Large (&gt; 2 hectares)</option>
+              </select>
+            </div>
+            <div style="display:flex; gap:0.6rem; margin-top:0.25rem;">
+              <button class="primary" type="button" onclick="checkEligibility()">Evaluate Criteria</button>
+              <button class="secondary" type="reset">Reset</button>
+            </div>
+          </form>
+          <div id="eligResult" style="margin-top:0.75rem; font-weight:600; font-size:0.9rem;"></div>
+        </div>
+
+        <div class="card" style="margin-top:1.25rem;">
+          <div class="card-header">
+            <h3>Application Tracker</h3>
+            <span class="card-badge">Status</span>
+          </div>
+          <p>Input reference code to review submission status.</p>
+          <div style="display:flex; gap:0.6rem; margin-top:0.5rem; max-width:440px;">
+            <input id="appRef" placeholder="Reference code (e.g. PMK-10294)" />
+            <button class="primary" onclick="trackApplication()">Track</button>
+          </div>
+          <div id="appStatus" style="margin-top:0.75rem; font-weight:600; font-size:0.9rem; color:var(--accent-base);"></div>
+        </div>
+      </div>
+
+      <aside>
+        <div class="card">
+          <div class="card-header">
+            <h3>Required Documentation</h3>
+            <span class="card-badge">Checklist</span>
+          </div>
+          <ul style="padding-left:1.25rem; color:var(--text-secondary); line-height:1.7;">
+            <li>Aadhaar identification proof</li>
+            <li>Land ownership record (Khasra / Khatauni)</li>
+            <li>Bank account passbook (DBT linked)</li>
+            <li>Passport-size photograph</li>
+          </ul>
+        </div>
+
+        <div class="card" style="margin-top:1.25rem;">
+          <div class="card-header">
+            <h3>Administrative Offices</h3>
+            <span class="card-badge">Contacts</span>
+          </div>
+          <div style="font-size:0.88rem; line-height:1.8; color:var(--text-secondary);">
+            <div><strong>District Agriculture Office:</strong> 01234-XXXXX</div>
+            <div><strong>Block Development Office:</strong> 01234-YYYYY</div>
+            <div><strong>Kisan Call Center:</strong> 1800-180-1551</div>
+          </div>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <span>Grameen Sathi+ · Rural Development &amp; Advisory</span>
+      <span>Clean Interface · High-Contrast Layout</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    function checkEligibility(){
+      const form = document.getElementById('eligForm');
+      const fd = new FormData(form);
+      const land = fd.get('landholding');
+      const result = document.getElementById('eligResult');
+      if (land === 'm' || land === 's') {
+        result.style.color = '#1C5229';
+        result.textContent = 'Eligible for primary small-scale farmer support and input subsidies.';
+      } else {
+        result.style.color = '#8A4F00';
+        result.textContent = 'Standard guidelines apply. Review specific institutional credit criteria.';
+      }
+    }
+
+    function trackApplication(){
+      const ref = document.getElementById('appRef').value.trim();
+      const out = document.getElementById('appStatus');
+      if (!ref) { out.textContent = 'Please enter an application reference.'; return; }
+      out.textContent = 'Querying verification records for ' + ref + '...';
+      setTimeout(()=> {
+        out.textContent = 'Current status: Verified by Block Inspector. Disbursement pending.';
+      }, 650);
+    }
+  </script>
+</body>
+</html>
